@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coconut Sale</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+        }
+        header {
+            background: #0a6847;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 700px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .product {
+            text-align: center;
+        }
+        .product img {
+            width: 200px;
+            border-radius: 10px;
+        }
+        .btn {
+            background: #0a6847;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        .btn:hover {
+            background: #085639;
+        }
+        input {
+            padding: 8px;
+            width: 80px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>VISHNU AGRI PRODUCT</h1>
+    </header>
+
+    <div class="container">
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80" alt="Nature" style="width:100%; border-radius:12px; margin-bottom:20px;" />
+
+            <h2>Our Products</h2>
+            <button class="btn" onclick="showCoconut()">Coconut</button>
+        </div>
+
+        <div class="product" id="coconutSection" style="display:none; margin-top:30px;">
+            <img src="https://images.unsplash.com/photo-1601049838581-d5b8b6ae3f55?auto=format&fit=crop&w=600&q=80" alt="Coconut" />
+            <h2>Fresh Coconut</h2>
+            <p>Price: ₹45 per piece</p>
+
+            <label>Quantity:
+                <input id="qty" type="number" value="1" min="1" />
+            </label><br>
+
+            <button class="btn" id="buyBtn">Buy via WhatsApp</button>
+        </div>
+    </div>
+
+    <script>
+        function showCoconut() {
+            document.getElementById('coconutSection').style.display = 'block';
+        }
+
+        const phone = "919655285900"; // Your number
+        const productName = "Fresh Coconut";
+        const price = 45;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById('buyBtn').addEventListener('click', () => {
+                const qty = document.getElementById('qty').value;
+                const total = qty * price;
+
+                const message = encodeURIComponent(
+                    `Vanakkam! I want to buy ${productName}.
+Quantity: ${qty}
+Total Price: ₹${total}
+Please confirm availability.`
+                );
+
+                const url = `https://wa.me/${phone}?text=${message}`;
+                window.open(url, '_blank');
+            });
+        });
+    </script>
+</body>
+</html>
